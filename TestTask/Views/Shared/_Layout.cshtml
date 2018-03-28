@@ -1,0 +1,61 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>TestTask</title>
+    <link rel="stylesheet" asp-href-include="~/lib/bootstrap/dist/css/*.min.css" />
+    <link rel="stylesheet" asp-href-include="~/lib/style.css" />
+    <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-2.2.0.min.js"></script>
+
+</head>
+
+<body>
+    <!--Header-->
+    <nav class="navbar navbar-inverse">
+        <div class="container">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <a class="navbar-brand" asp-controller="Error" asp-action="List">TestTask</a>
+                <ul class="nav navbar-nav">
+                    <li class="active"><a asp-controller="Error" asp-action="List">Home</a></li>
+                    <li><a asp-controller="Account" asp-action="List">All Users</a></li>
+                </ul>
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+
+                <ul class="nav navbar-nav navbar-right">
+
+                    <li><a a asp-controller="Error" asp-action="Add"><span class="glyphicon glyphicon-plus-sign"></span> Add Error</a></li>
+                    <li><a asp-controller="Account" asp-action="Register"><span class="glyphicon glyphicon-plus-sign"></span> Add User</a></li>
+
+
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">@User.Identity.Name<span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a asp-controller="Account" asp-action="Settings">Settings</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li><a asp-controller="Account" asp-action="Logout">Exit</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div><!-- /.navbar-collapse -->
+        </div><!-- /.container-fluid -->
+    </nav>
+    <!--Header-->
+
+    <div class="container">
+        @RenderBody()
+    </div>
+
+    <script src="https://ajax.aspnetcdn.com/ajax/jquery.validate/1.16.0/jquery.validate.min.js"></script>
+    <script src="https://ajax.aspnetcdn.com/ajax/jquery.validation.unobtrusive/3.2.6/jquery.validate.unobtrusive.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script rel="stylesheet" asp-src-include="~/lib/bootstrap/dist/js/*.min.js"></script>
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+</body>
+</html>

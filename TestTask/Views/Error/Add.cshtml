@@ -1,0 +1,35 @@
+﻿@model Error
+
+<h1 class="heading-text">Add Error</h1>
+<form class="form-horizontal addingError-form" asp-action="Add" method="post">
+    <div class="form-group">
+        <label asp-for="SmallDescription" class="col-sm-3 control-label">Small Description</label>
+        <div class="col-sm-9">
+            <input asp-for="SmallDescription" class="form-control" placeholder="Small Description">
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Desciption" class="col-sm-3 control-label">Description</label>
+        <div class="col-sm-9">
+            <textarea asp-for="Desciption" cols="40" rows="3" class="form-control" placeholder="Description" style="resize: none;"></textarea>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="urgency" class="col-sm-3 control-label">Urgency</label>
+        <div class="col-sm-4">
+            <select class="form-control" asp-for="urgency" asp-items="Html.GetEnumSelectList<Urgency>()">
+                <option selected="selected" value="">Please select</option>
+            </select>
+        </div>
+        <label asp-for="criticality" class="col-sm-2 control-label">Criticality</label>
+        <div class="col-sm-3">
+            <select class="form-control" asp-for="criticality" asp-items="Html.GetEnumSelectList<Criticality>()">
+                <option selected="selected" value="">Please select</option>
+            </select>
+        </div>
+    </div>
+    @Html.Partial("Buttons")
+    
+</form>

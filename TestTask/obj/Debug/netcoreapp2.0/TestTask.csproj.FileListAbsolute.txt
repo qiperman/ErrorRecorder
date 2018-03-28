@@ -1,0 +1,11 @@
+c:\users\acer\source\repos\TestTask\TestTask\bin\Debug\netcoreapp2.0\TestTask.deps.json
+c:\users\acer\source\repos\TestTask\TestTask\bin\Debug\netcoreapp2.0\TestTask.runtimeconfig.json
+c:\users\acer\source\repos\TestTask\TestTask\bin\Debug\netcoreapp2.0\TestTask.runtimeconfig.dev.json
+c:\users\acer\source\repos\TestTask\TestTask\bin\Debug\netcoreapp2.0\TestTask.dll
+c:\users\acer\source\repos\TestTask\TestTask\bin\Debug\netcoreapp2.0\TestTask.pdb
+c:\users\acer\source\repos\TestTask\TestTask\obj\Debug\netcoreapp2.0\TestTask.csprojResolveAssemblyReference.cache
+c:\users\acer\source\repos\TestTask\TestTask\obj\Debug\netcoreapp2.0\TestTask.csproj.CoreCompileInputs.cache
+c:\users\acer\source\repos\TestTask\TestTask\obj\Debug\netcoreapp2.0\TestTask.AssemblyInfoInputs.cache
+c:\users\acer\source\repos\TestTask\TestTask\obj\Debug\netcoreapp2.0\TestTask.AssemblyInfo.cs
+c:\users\acer\source\repos\TestTask\TestTask\obj\Debug\netcoreapp2.0\TestTask.dll
+c:\users\acer\source\repos\TestTask\TestTask\obj\Debug\netcoreapp2.0\TestTask.pdb

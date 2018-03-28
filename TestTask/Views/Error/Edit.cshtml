@@ -1,0 +1,98 @@
+﻿@model EditViewModel
+<h1 class="heading-text">Edit Error #@Model.Error.ErrorId</h1>
+
+<div class="col-sm-6" style="padding-top: 40px;">
+    <div asp-validation-summary="All" class="text-danger"></div>
+    <form asp-action="Edit" method="post">
+        <input type="hidden" asp-for="Error.ErrorId" />
+        <input type="hidden" asp-for="Error.User.Login" />
+        <input type="hidden" asp-for="Error.Date" />
+        <input type="hidden" asp-for="Error.status" />
+
+        <table class="table">
+            <tr>
+                <th>Creator:</th>
+                <td> @(Model.Error.User.Name+" "+Model.Error.User.SName)</td>
+            </tr>
+            <tr>
+                <th>Date: </th>
+                <td>@Model.Error.Date.Date.ToShortDateString()</td>
+            </tr>
+            <tr>
+                <th>Small Description: </th>
+                <td>
+                    <div><span asp-validation-for="Error.SmallDescription" class="text-danger"></span></div>
+                    <input asp-for="Error.SmallDescription" class="form-control" />
+                </td>
+            </tr>
+            <tr>
+                <th>Description: </th>
+                <td>
+                    <textarea asp-for="Error.Desciption" class="form-control" cols="40" rows="5" style="resize: none;"></textarea>
+                </td>
+            </tr>
+            <tr>
+                <th>Status: </th>
+                <td>@Model.Error.status</td>
+            </tr>
+            <tr>
+                <th>Urgency: </th>
+                <td>
+                    <select class="form-control" asp-for="Error.urgency" asp-items="Html.GetEnumSelectList<Urgency>()"></select>
+                </td>
+            </tr>
+            <tr>
+                <th>Criticality:</th>
+                <td>
+                    <select class="form-control" asp-for="Error.criticality" asp-items="Html.GetEnumSelectList<Criticality>()"></select>
+                </td>
+            </tr>
+        </table>
+            @Html.Partial("Buttons")
+    </form>
+</div>
+
+
+<div class="col-sm-6" style="padding-top: 40px;">
+
+    <form class="form-horizontal" asp-action="ChangeStatus" method="post">
+        <div asp-validation-summary="All" class="text-danger"></div>
+        <input type="hidden" asp-for="Error.ErrorId" />
+        <input asp-for="Error.SmallDescription" type="hidden" />
+        <div class="form-group">
+
+            <label asp-for="addHistory.Activity" class="col-sm-3 control-label">Action</label>
+            <div class="col-sm-9">
+                <div><span asp-validation-for="addHistory.Activity" class="text-danger"></span></div>
+                @if (Model.Error.status == Status.New)
+                {
+                    <select class="form-control" asp-for="addHistory.Activity">
+                        <option selected value="">Select Action</option>
+                        <option value="0">Open</option>
+                    </select>
+                }
+                else
+                {
+
+                    <select class="form-control" asp-for="addHistory.Activity" asp-items="Html.GetEnumSelectList<Activity>()">
+                        <option selected value="">Select Action</option>
+                    </select>
+                }
+            </div>
+        </div>
+
+        <div class="form-group">
+
+            <label asp-for="addHistory.Comment" class="col-sm-3 control-label">Comment</label>
+            <div class="col-sm-9">
+                <div><span asp-validation-for="addHistory.Comment" class="text-danger"></span></div>
+                <input class="form-control" asp-for="addHistory.Comment" />
+            </div>
+        </div>
+            @Html.Partial("Buttons")
+    </form>
+
+
+    @Html.Partial("History",Model.Error)
+
+</div>

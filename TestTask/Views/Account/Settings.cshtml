@@ -1,0 +1,31 @@
+﻿@model User
+<h1 class="heading-text">User Settings</h1>
+
+<form class="form-horizontal settings-form" asp-controller="Account" asp-action="Settings" method="Post">
+    <div asp-validation-summary="All" class="text-danger"></div>
+    <div class="form-group">
+        <label asp-for="Login" class="col-sm-2 control-label">Login</label>
+        <div class="col-sm-10">
+            <input class="form-control" asp-for="Login" readonly/>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="SName" class="col-sm-2 control-label">Surname</label>
+        <div class="col-sm-10">
+            <div><span asp-validation-for="SName" class="text-danger"></span></div>
+            <input class="form-control" placeholder="Surname" asp-for="SName">
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Name" class="col-sm-2 control-label">Name</label>
+        <div class="col-sm-10">
+            <div><span asp-validation-for="SName" class="text-danger"></span></div>
+            <input class="form-control" placeholder="Name" asp-for="Name">
+        </div>
+    </div>
+
+
+@Html.Partial("Buttons")
+</form>

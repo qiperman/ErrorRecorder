@@ -1,0 +1,51 @@
+﻿@model Error
+<h1 class="heading-text">View Error #@Model.ErrorId</h1>
+
+<div class="col-sm-6" style="padding-top: 40px;">
+        <table class="table">
+            <tr>
+                <th>Creator:</th>
+                <td> @(Model.User.Name+" "+Model.User.SName)</td>
+            </tr>
+            <tr>
+                <th>Date: </th>
+                <td>@Model.Date.Date.ToShortDateString()</td>
+            </tr>
+            <tr>
+                <th>Small Description: </th>
+                <td>
+                    @Model.SmallDescription
+                </td>
+            </tr>
+            <tr>
+                <th>Description: </th>
+
+                <td>
+                    @Model.Desciption
+            </td>
+            </tr>
+            <tr>
+                <th>Status: </th>
+                <td><b>@Model.status</b></td>
+            </tr>
+            <tr>
+                <th>Urgency: </th>
+                <td>
+                    @Model.urgency
+                </td>
+            </tr>
+            <tr>
+                <th>Criticality:</th>
+                <td>
+                    @Model.criticality
+                </td>
+            </tr>
+        </table>
+</div>
+
+
+<div class="col-sm-6" style="padding-top: 40px;">
+    <h3 class="heading-text">History</h3>
+    @Html.Partial("History")
+
+</div>

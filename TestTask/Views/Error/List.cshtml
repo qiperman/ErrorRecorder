@@ -1,0 +1,139 @@
+﻿@model ErrorListViewModel
+<h1 class="heading-text">Errors</h1>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>
+                @{ string cl = "hidden";}
+                @if (Model.SortState == SortState.DateAsc)
+                {
+                    cl = "glyphicon glyphicon-chevron-up";
+                }
+                @if (Model.SortState == SortState.DateDesc)
+                {
+                    cl = "glyphicon glyphicon-chevron-down";
+                }
+                <a asp-action="List" asp-route-sortOrder="@ViewBag.DateSort">Date<span class="@cl"></span></a>
+            </th>
+            <th>Description</th>
+            <th>
+                @{ string cl1 = "hidden";}
+                @if (Model.SortState == SortState.NameAsc)
+                {
+                    cl1 = "glyphicon glyphicon-chevron-up";
+                }
+                @if (Model.SortState == SortState.NameDesc)
+                {
+                    cl1 = "glyphicon glyphicon-chevron-down";
+                }
+
+                <a asp-action="List" asp-route-sortOrder="@ViewBag.NameSort">UserName<span class="@cl1"></span></a>
+            </th>
+            <th style="min-width: 80px;">
+                @{ string cl2 = "hidden";}
+                @if (Model.SortState == SortState.StatusAsc)
+                {
+                    cl2 = "glyphicon glyphicon-chevron-up";
+                }
+                @if (Model.SortState == SortState.StatusDesc)
+                {
+                    cl2 = "glyphicon glyphicon-chevron-down";
+                }
+            <a asp-action="List" asp-route-sortOrder="@ViewBag.StatusSort">Status<span class="@cl2"></span></a>
+            </th>
+            <th>
+                @{ string cl3 = "hidden";}
+                @if (Model.SortState == SortState.UrgencyAsc)
+                {
+                    cl3 = "glyphicon glyphicon-chevron-up";
+                }
+                @if (Model.SortState == SortState.UrgencyDesc)
+                {
+                    cl3 = "glyphicon glyphicon-chevron-down";
+                }
+            <a asp-action="List" asp-route-sortOrder="@ViewBag.UrgencySort">Urgency<span class="@cl3"></span></a>
+            </th>
+            <th style="min-width: 95px;">
+                @{ string cl4 = "hidden";}
+                @if (Model.SortState == SortState.CriticalityAsc)
+                {
+                    cl4 = "glyphicon glyphicon-chevron-up";
+                }
+                @if (Model.SortState == SortState.CriticalityDesc)
+                {
+                    cl4 = "glyphicon glyphicon-chevron-down";
+                }
+            <a asp-action="List" asp-route-sortOrder="@ViewBag.CriticalitySort">Criticality<span class="@cl4"></span></a>
+            </th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @{var rowClass = ""; }
+        @foreach (var p in Model.Errors)
+        {
+            @switch (p.status)
+            {
+                case Status.Closed:
+                    rowClass = "danger";
+                    break;
+                case Status.New:
+                    rowClass = "success";
+                    break;
+                case Status.Open:
+                    rowClass = "warning";
+                    break;
+                default:
+                    rowClass = "info";
+                    break;
+            }
+
+            <tr class=@rowClass>
+
+                <th>@p.Date.Date.ToShortDateString()</th>
+                <td>@p.SmallDescription</td>
+
+                @if (p.User != null)
+                {
+                    <td style="min-width:150px;">
+                        @(p.User.Name + " " + p.User.SName[0]+".")
+                    </td>
+                }
+                else
+                {
+                    <td style="min-width:150px;">
+                        NoUser
+                    </td>
+                }
+
+
+                <td>@p.status</td>
+                <td>@p.urgency</td>
+                <td>@p.criticality</td>
+
+                <td style="min-width:100px;">
+
+                    <a class="btn btn-info" asp-action="ViewError" asp-route-errorId="@p.ErrorId">
+                        <span class="glyphicon glyphicon-eye-open"></span>
+                    </a>
+                    @if (p.status != Status.Closed)
+                    {
+                        <a class="btn btn-warning" asp-action="Edit" asp-route-errorId="@p.ErrorId">
+                            <span class="glyphicon glyphicon-pencil"></span>
+                        </a>
+                    }
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+<div class="container">
+    <div page-model="@Model.Paginginfo" page-action="List"
+         page-classes-enabled="true"
+         page-class="btn" page-class-normal="btn-default"
+         page-class-selected="btn-primary"
+         class="btn-group paginationBtns"
+         page-url-sortOrder="@Model.SortState"
+         >
+    </div>
+</div>
